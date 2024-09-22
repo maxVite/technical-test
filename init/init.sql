@@ -1,7 +1,7 @@
 CREATE TABLE movies (
-    id INT,
-    title VARCHAR(255),
-    year INT,
+    id INT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    year INT NOT NULL,
     synopsis VARCHAR(1000),
     critic_score INT,
     people_score FLOAT,
@@ -26,6 +26,13 @@ CREATE TABLE movies (
     crew VARCHAR(1000),
     link VARCHAR(255)
 );
+
+CREATE SEQUENCE IF NOT EXISTS movies_id_seq;
+
+ALTER TABLE movies
+ALTER COLUMN id SET DEFAULT nextval('movies_id_seq');
+
+SELECT setval('movies_id_seq', (SELECT MAX(id) FROM movies));
 
 INSERT INTO movies (id, title, year, synopsis, critic_score, people_score, consensus, total_reviews, total_ratings, type, rating, genre, original_language, director, producer, writer, release_date_theaters, release_date_streaming, box_office_gross_usa, runtime, production_co, sound_mix, aspect_ratio, view_the_collection, crew, link) VALUES (1, 'Avengers: Endgame', 2019, 'Adrift in space with no food or water, Tony Stark sends a message to Pepper Potts as his oxygen supply starts to dwindle. Meanwhile, the remaining Avengers -- Thor, Black Widow, Captain America and Bruce Banner -- must figure out a way to bring back their vanquished allies for an epic showdown with Thanos -- the evil demigod who decimated the planet and the universe.', 94, 90, 'Exciting, entertaining, and emotionally impactful, Avengers: Endgame does whatever it takes to deliver a satisfying finale to Marvel''s epic Infinity Saga.', 538, '50,000+', 'Action & Adventure', 'PG-13 (Sequences of Sci-Fi Violence|Action|Some Language)', 'sci fi, adventure, action, fantasy', 'English', 'Anthony Russo, Joe Russo', 'Kevin Feige', 'Christopher Markus, Stephen McFeely', 'Apr 26, 2019 wide', 'Jul 30, 2019', '$858.4M', '3h 1m', 'Marvel Studios, Walt Disney Pictures', 'Dolby Atmos, DTS, Dolby Digital, SDDS', 'Scope (2.35:1)', 'Marvel Cinematic Universe', 'Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth, Scarlett Johansson, Jeremy Renner, Brie Larson, Paul Rudd, Don Cheadle, Karen Gillan, Anthony Russo, Joe Russo, Christopher Markus, Stephen McFeely, Kevin Feige, Louis D''Esposito, Victoria Alonso, Michael Grillo, Trinh Tran, Jon Favreau', 'http://www.rottentomatoes.com/m/avengers_endgame');
 INSERT INTO movies (id, title, year, synopsis, critic_score, people_score, consensus, total_reviews, total_ratings, type, rating, genre, original_language, director, producer, writer, release_date_theaters, release_date_streaming, box_office_gross_usa, runtime, production_co, sound_mix, aspect_ratio, view_the_collection, crew, link) VALUES (2, 'Mission: Impossible -- Fallout', 2018, 'Ethan Hunt and the IMF team join forces with CIA assassin August Walker to prevent a disaster of epic proportions. Arms dealer John Lark and a group of terrorists known as the Apostles plan to use three plutonium cores for a simultaneous nuclear attack on the Vatican, Jerusalem and Mecca, Saudi Arabia. When the weapons go missing, Ethan and his crew find themselves in a desperate race against time to prevent them from falling into the wrong hands.', 97, 88, 'Fast, sleek, and fun, Mission: Impossible - Fallout lives up to the "impossible" part of its name by setting yet another high mark for insane set pieces in a franchise full of them.', 433, '10,000+', 'Action & Adventure', 'PG-13 (Intense Sequences of Action|Brief Strong Language|Violence)', 'action, mystery and thriller, adventure', 'English', 'Christopher McQuarrie', 'Tom Cruise, Christopher McQuarrie, Jake Myers, J.J. Abrams', 'Christopher McQuarrie', 'Jul 27, 2018 wide', 'Nov 20, 2018', '$220.1M', '2h 27m', 'Bad Robot, Tom Cruise', 'DTS, Dolby Atmos, Dolby Digital', 'Scope (2.35:1)', null, 'Tom Cruise, Henry Cavill, Ving Rhames, Simon Pegg, Rebecca Ferguson, Sean Harris, Angela Bassett, Michelle Monaghan, Alec Baldwin, Vanessa Kirby, Christopher McQuarrie, Christopher McQuarrie, Tom Cruise, Christopher McQuarrie, Jake Myers, J.J. Abrams, David Ellison, Dana Goldberg, Don Granger, Rob Hardy', 'http://www.rottentomatoes.com/m/mission_impossible_fallout');

@@ -6,3 +6,34 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model movies {
+  id                     Int     @id @default(autoincrement())
+  title                  String  @db.VarChar(255)
+  year                   Int
+  synopsis               String? @db.VarChar(1000)
+  critic_score           Int?
+  people_score           Float?
+  consensus              String? @db.VarChar(500)
+  total_reviews          Int?
+  total_ratings          String? @db.VarChar(50)
+  type                   String? @db.VarChar(50)
+  rating                 String? @db.VarChar(100)
+  genre                  String? @db.VarChar(255)
+  original_language      String? @db.VarChar(50)
+  director               String? @db.VarChar(255)
+  producer               String? @db.VarChar(500)
+  writer                 String? @db.VarChar(500)
+  release_date_theaters  String? @db.VarChar(50)
+  release_date_streaming String? @db.VarChar(50)
+  box_office_gross_usa   String? @db.VarChar(50)
+  runtime                String? @db.VarChar(20)
+  production_co          String? @db.VarChar(500)
+  sound_mix              String? @db.VarChar(100)
+  aspect_ratio           String? @db.VarChar(50)
+  view_the_collection    String? @db.VarChar(100)
+  crew                   String? @db.VarChar(1000)
+  link                   String? @db.VarChar(255)
+
+  @@map("movies")
+}
