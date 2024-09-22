@@ -1,7 +1,7 @@
 "use client";
 
 import { Dispatch, SetStateAction, useEffect, useMemo, useState } from "react";
-import { Movie, MovieCard as MovieCardTypes } from "./movie.types";
+import { Movie, MovieCard as MovieCardType } from "./movie.types";
 
 const MovieSearch = ({
   setSearch,
@@ -27,7 +27,7 @@ const MovieCard = ({
   synopsis,
   cast,
   criticScore,
-}: MovieCardTypes) => {
+}: MovieCardType) => {
   return (
     <div className="bg-white shadow-md rounded-lg p-6 mb-4">
       <div className="flex justify-between items-center">
@@ -70,7 +70,9 @@ const MovieList = ({ movies }: { movies: Movie[] }) => {
 
 export const Movies = () => {
   const [search, setSearch] = useState<string | undefined>(undefined);
-  const [debouncedSearch, setDebouncedSearch] = useState(search);
+  const [debouncedSearch, setDebouncedSearch] = useState<string | undefined>(
+    search,
+  );
   const [movies, setMovies] = useState<Movie[]>([]);
 
   useEffect(() => {

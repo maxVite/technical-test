@@ -1,13 +1,14 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
+import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const config = app.get<ConfigService>(ConfigService);
 
-  const allowedOrigins = ['http://localhost:3000'];
-
+  const FRONTEND_URL = config.get('FRONTEND_URL');
   app.enableCors({
-    origin: allowedOrigins,
+    origin: [FRONTEND_URL],
     credentials: true,
   });
 
