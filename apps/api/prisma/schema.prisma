@@ -9,13 +9,13 @@ datasource db {
 
 model movies {
   id                     Int     @id @default(autoincrement())
-  title                  String  @db.VarChar(255)
+  title                  String  @unique @db.VarChar(255)
   year                   Int
   synopsis               String? @db.VarChar(1000)
   critic_score           Int?
   people_score           Float?
   consensus              String? @db.VarChar(500)
-  total_reviews          Int?
+  total_reviews          Int?    @default(0)
   total_ratings          String? @db.VarChar(50)
   type                   String? @db.VarChar(50)
   rating                 String? @db.VarChar(100)
